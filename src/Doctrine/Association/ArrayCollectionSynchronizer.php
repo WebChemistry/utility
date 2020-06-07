@@ -28,21 +28,25 @@ final class ArrayCollectionSynchronizer
 		int $options = self::ADD | self::REMOVE
 	): ArraySynchronized
 	{
-		$synchronized = Arrays::synchronize($comparator, $collection->toArray(), $values);
+		$synchronized = Arrays::synchronize($collection->toArray(), $values, $comparator);
 
-		if ($options & self::REMOVE) {
+		if ($opRemove = $options & self::REMOVE) {
 			foreach ($synchronized->getRemoved() as $key => $_) {
 				$collection->remove($key);
 			}
 		}
 
-		if ($options & self::ADD) {
+		if ($opAdd = $options & self::ADD) {
 			foreach ($synchronized->getAdded() as $element) {
 				$collection->add($element);
 			}
 		}
 
-		return $synchronized;
+		return new ArraySynchronized(
+			$opAdd ? $synchronized->getAdded() : [],
+			$opRemove ? $synchronized->getRemoved() : [],
+			$collection->toArray()
+		);
 	}
 
 }

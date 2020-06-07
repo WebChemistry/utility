@@ -12,7 +12,7 @@ final class Arrays
 	 * @param mixed[] $previous
 	 * @param mixed[] $current
 	 */
-	public static function synchronize(?callable $comparator, iterable $previous, iterable $current): ArraySynchronized
+	public static function synchronize(iterable $previous, iterable $current, ?callable $comparator = null): ArraySynchronized
 	{
 		$comparator ??= [self::class, 'strictComparator'];
 

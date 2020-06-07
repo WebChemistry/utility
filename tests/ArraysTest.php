@@ -10,7 +10,7 @@ class ArraysTest extends Unit
 
 	public function testSynchronize(): void
 	{
-		$diff = Arrays::synchronize(null,
+		$diff = Arrays::synchronize(
 			['foo', 'remove'],
 			['foo', 'add']
 		);
