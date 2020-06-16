@@ -10,6 +10,9 @@
     },
     "require-dev": {
         "doctrine/collections": "^1.6",
-        "codeception/codeception": "^4.1"
+        "codeception/codeception": "^4.1",
+        "latte/latte": "^2.8",
+        "nette/di": "^3.0",
+        "nette/application": "^3.0"
     }
 }
