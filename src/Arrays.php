@@ -2,11 +2,27 @@
 
 namespace WebChemistry\Utility;
 
+use LogicException;
 use Traversable;
 use WebChemistry\Utility\Entity\ArraySynchronized;
 
 final class Arrays
 {
+
+	public static function defaults(array $defaults, iterable $array): array
+	{
+		foreach ($array as $key => $value) {
+			if (!array_key_exists($key, $defaults)) {
+				throw new LogicException(
+					sprintf('Key %s is not allowed in array', $key)
+				);
+			}
+
+			$defaults[$key] = $value;
+		}
+
+		return $defaults;
+	}
 
 	/**
 	 * @param mixed[] $previous
